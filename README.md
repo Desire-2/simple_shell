@@ -46,7 +46,7 @@ $
 ## Project Tasks
 The project consists of several tasks, each building upon the previous one. Here's a brief overview of the tasks:
 
-** Task 0: Betty would be proud
+* Task 0: Betty would be proud
 Ensure the code follows the Betty coding style.
 
 ** Task 1: Simple shell 0.1
