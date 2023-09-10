@@ -49,51 +49,51 @@ The project consists of several tasks, each building upon the previous one. Here
 * Task 0: Betty would be proud
 Ensure the code follows the Betty coding style.
 
-** Task 1: Simple shell 0.1
+* Task 1: Simple shell 0.1
 Create a basic shell that can execute simple commands.
 
-** Task 2: Simple shell 0.2
+* Task 2: Simple shell 0.2
 Extend the shell to handle command lines with arguments.
 
-** Task 3: Simple shell 0.3
+* Task 3: Simple shell 0.3
 Implement PATH handling and prevent unnecessary forks.
 
-** Task 4: Simple shell 0.4
+* Task 4: Simple shell 0.4
 Implement the exit built-in command.
 
-** Task 5: Simple shell 1.0
+* Task 5: Simple shell 1.0
 Implement the env built-in command to display the current environment.
 
-** Task 6: Simple shell 0.1.1
+* Task 6: Simple shell 0.1.1
 Write a custom getline function to read user input.
 
-** Task 7: Simple shell 0.2.1
+* Task 7: Simple shell 0.2.1
 Remove the use of strtok in the shell.
 
-** Task 8: Simple shell 0.4.1
+* Task 8: Simple shell 0.4.1
 Add support for arguments in the exit built-in command.
 
-** Task 9: setenv, unsetenv
+* Task 9: setenv, unsetenv
 Implement the setenv and unsetenv built-in commands.
 
-** Task 10: cd
+* Task 10: cd
 Implement the cd built-in command for changing directories.
 
-** Task 11: ;
+* Task 11: ;
 Handle command separators (;).
 
-** Task 12: && and ||
+* Task 12: && and ||
 Handle logical operators (&& and ||).
 
-** Task 13: alias
+* Task 13: alias
 Implement the alias built-in command for defining and listing aliases.
 
-** Task 14: Variables
+* Task 14: Variables
 Handle variable replacement, including $? and $$.
 
-** Task 15: Comments
+* Task 15: Comments
 Handle comments (#) in command lines.
 
-** Task 16: File as input
+* Task 16: File as input
 Allow the shell to read commands from a file.
 
