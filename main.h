@@ -116,12 +116,12 @@ size_t prints_list_string(const list_t *h);
 delete_node_at_index_of(list_t **head, unsigned int index);
 void _free_list_nds(list_t **head_ptr);
 
-
+/*get_nd_index_on - ......*/
 size_t _list_length_link(const list_t *h);
 char **_list_to_str(list_t *head);
 size_t print_list_el_link(const list_t *h);
 list_t *_nd_starts_with_(list_t *node, char *prefix, char c);
-ssize_t get_nd_index_on(list_t *head, list_t *node)
+ssize_t get_nd_index_on(list_t *head, list_t *node);
 
 
 char *_mem_set_cons(char *s, char b, unsigned int n);
@@ -139,7 +139,7 @@ int populate_envnt_list(info_t *info);
 void _eputs_str(char *str);
 int _eput_char_stderr(char c);
 int _put_fld(char c, int fd);
-int _puts_fld(char *str, int fd)
+int _puts_fld(char *str, int fd);
 
 
 int _err_atoi_int(char *s);
@@ -192,7 +192,7 @@ char **str_to_word(char *str, char d);
 int interactive_mode(info_t *info);
 int is_delimimeter(char c, char *delim);
 int _isalphabet(int c);
-int _atoi_int(char *s)
+int _atoi_int(char *s);
 
 
 int is_char_chain(info_t *info, char *buf, size_t *p);

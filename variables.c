@@ -4,7 +4,7 @@
 /**
  * is_char_chain - Function to test if current char
  *		in buffer is a chain delimeter
- * @buf: the char buffer 
+ * @buf: the char buffer
  * @info: The parameter struct
  * @p: The address of current position in buf
  *

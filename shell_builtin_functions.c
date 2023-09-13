@@ -2,8 +2,8 @@
 /**
  * my_exit - Function to exits the shell
  * @info: Structure containing potential arguments.
- * 		Used to maintain constant function prototype.
- * Return: exits 
+ *		Used to maintain constant function prototype.
+ * Return: exits
  * (0) if info.argv[0] != "exit"
  */
 int my_exit(info_t *info)
@@ -32,14 +32,13 @@ int my_exit(info_t *info)
 /**
  * my_cd - Function to changes the current directory of the process
  * @info: Structure containing potential arguments.
- * 			Used to maintain constant function prototype.
+ *			Used to maintain constant function prototype.
  * Return: 0 Always
  */
 
 int my_cd(info_t *info)
 {
-	char *m, *dir;
-	char buffer[1024];
+	char *m, *dir, buffer[1024];
 	int changedir_ret;
 
 	s = getcwd(buffer, 1024);
@@ -74,10 +73,8 @@ int my_cd(info_t *info)
 		_eputs_str(info->argv[1]), _eput_char_stderr('\n');
 	}
 	else
-	{
 		_setenvirn(info, "OLDPWD", _getenvirn(info, "PWD="));
-		_setenvirn(info, "PWD", getcwd(buffer, 1024));
-	}
+	_setenvirn(info, "PWD", getcwd(buffer, 1024));
 	return (0);
 }
 
@@ -85,7 +82,7 @@ int my_cd(info_t *info)
 /**
  * _my_help - Function to changes the cd of the process
  * @info: Structure containing potential arguments.
- * 		Used to maintain constant function prototype.
+ *		Used to maintain constant function prototype.
  * Return: 0 Always
  */
 

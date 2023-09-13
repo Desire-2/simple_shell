@@ -47,7 +47,7 @@ int shell_hsh(info_t *info, char **av)
 
 /**
  * _find_builtin_cmd - Function finds a builtin command
- * @info: the parameter 
+ *			@info: the parameter
  * Return: If builtin not found -1,
  *	If builtin executed successfully 0,
  *	If builtin found but not  1,
@@ -57,7 +57,7 @@ int shell_hsh(info_t *info, char **av)
 int _find_builtin_cmd(info_t *info)
 {
 	int n;
-    int builtin_rtn = -1;
+	int builtin_rtn = -1;
 
 	builtin_table builtintbl[] = {
 		{"exit", my_exit},
@@ -134,7 +134,7 @@ void _find_cmd_p(info_t *info)
  */
 void fork_cmd_exec(info_t *info)
 {
-	pid_t chld_pd = fork();;
+	pid_t chld_pd = fork();
 
 	if (chld_pd == -1)
 	{

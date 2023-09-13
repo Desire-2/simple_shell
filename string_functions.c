@@ -32,7 +32,7 @@ char *_str_cpy(char *dest, char *src)
 
 char *_str_duplicate(const char *str)
 {
-    char *rtn;
+	char *rtn;
 	int len = 0;
 
 	if (str == NULL)
@@ -71,15 +71,14 @@ void _puts_str(char *str)
 
 /**
  * _put_char_std - Function writes the character c to stdout
- * @c: The character to be printed
- *
+ *@c: The character to be printed
  * Return: 1 On success.
  * On error, -1 is returned, and errno is set appropriately.
  */
 
 int _put_char_std(char c)
 {
-    static char buffer[WRITE_BUF_SIZE];
+	static char buffer[WRITE_BUF_SIZE]
 	static int n;
 
 	if (c == BUF_FLUSH || i >= WRITE_BUF_SIZE)

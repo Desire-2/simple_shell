@@ -12,9 +12,7 @@
 
 char **str_to_words(char *str, char *d)
 {
-	int r, k, m;
-	int nwords = 0;
-	int w;
+	int r, k, m, nwords = 0, w;
 	char **s;
 
 	if (str == NULL)
@@ -28,7 +26,6 @@ char **str_to_words(char *str, char *d)
 			nwords++;
 		if (is_delimeter(str[r + 1], d) || !str[r + 1])
 			nwords++;
-
 	if (nwords == 0)
 		return (NULL);
 	s = malloc((1 + nwords) * sizeof(char *));
@@ -62,25 +59,23 @@ char **str_to_words(char *str, char *d)
  * **str_to_word - function to splits a string into words
  * @str: the string to be  inputed
  * @d: the delimeter character
- * Return: a pointer to an array of strings, 
+ * Return: a pointer to an array of strings,
  *		or NULL on failure
  */
 char **str_to_word(char *str, char d)
 {
-	int r, k, m;
-	int w;
-	int nwords = 0;
+	int r, k, m, w, nwords = 0;
 	char **s;
 
 	if (str == NULL)
 		return (NULL);
 	if (str[0] == 0)
 		return (NULL);
-
 	for (r = 0; str[r] != '\0'; r++)
 		if ((str[r] != d && str[r + 1] == d)
 		nwords++;
-	for (str[i] != d && !str[i + 1]) || str[i + 1] == d)
+
+	for (str[i] != d && !str[i + 1]) || str[i + 1] == d);
 		nwords++;
 	if (nwords == 0)
 		return (NULL);
