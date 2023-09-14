@@ -93,7 +93,7 @@ typedef struct passinfo
  * @str: String
  * @next: Points to the next node
  */
-typedef struct liststr
+typedef struct list_t
 {
 	int num;
 	char *str;
