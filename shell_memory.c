@@ -1,4 +1,4 @@
-#include "main.h"
+shell_memory.c#include "main.h"
 
 /**
  * _str_length - Function that returns the length of a string
@@ -22,7 +22,7 @@ int _str_length(char *s)
 
 
 /**
- * _str_cmp_two - Function performs lexicogarphic comparison of two strings.
+ * _str_cmp_twshell_memory.co - Function performs lexicogarphic comparison of two strings.
  * @s1: The first string
  * @s2: The next string
  *
