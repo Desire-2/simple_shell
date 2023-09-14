@@ -57,7 +57,7 @@ int _write_hist(info_t *info)
 	close(fil);
 	return (1);
 
-}
+} 
 
 
 /**

@@ -18,7 +18,7 @@ int _my_hist(info_t *info)
 * unset_alias_to_str - Function to sets alias to string
  * @info: parameter struct
  * @str: the alias string
- *
+g*
  * Return: 0 on success, 1 on error
  */
 
@@ -28,14 +28,14 @@ int  unset_alias_to_str(info_t *info, char *str)
 	int c;
 	int retrn;
 
-	p = _strchar(str, '=');
+	w = _str_char(str, '=');
 	if (!w)
 		return (1);
 	c = *w;
-	*p = 0;
-	retrn = delete_node_at_index_of(&(info->alias),
-		get_node_index_on(info->alias, node_starts_with(info->alias, str, -1)));
-	*p = c;
+	*w = 0;
+	return = delete_node_at_index_of(&(info->alias),
+		get_nd_index_on(info->alias, _nd_starts_with_(info->alias, str, -1)));
+	*w = c;
 	return (retrn);
 
 }
@@ -53,14 +53,14 @@ int set_alias_str(info_t *info, char *str)
 {
 	char *w;
 
-	p = _strchar(str, '=');
-	if (!p)
+	w = _str_char(str, '=');
+	if (!w)
 		return (1);
 	if (!*++w)
-		return (unset_alias_str(info, str));
+		return (unset_alias_to_str(info, str));
 
-	unset_alias_str(info, str);
-	return (add_node_end_of(&(info->alias), str, 0) == NULL);
+	unset_alias_to_str(info, str);
+	return (add_node_to_end(&(info->alias), str, 0) == NULL);
 
 }
 
@@ -78,12 +78,12 @@ int print_alias_str(list_t *node)
 
 	if (node)
 	{
-		w = _strchar(node->str, '=');
-		for (a = node->str; c <= p; c++)
-		_putchar(*c);
-		_putchar('\'');
-		_puts(w + 1);
-		_puts("'\n");
+		w = _str_char(node->str, '=');
+		for (c = node->str; c <= w; c++)
+		_put_char_std(*c);
+		_put_char_std('\'');
+		_puts_str(w + 1);
+		_puts_str("'\n");
 		return (0);
 	}
 	return (1);
@@ -91,7 +91,7 @@ int print_alias_str(list_t *node)
 
 
 /**
- * _my_alias - Function to mimics the alias builtin (man alias)
+ * _mya_lias - Function to mimics the alias builtin (man alias)
  * @info: Structure containing potential arguments.
  *	Used to maintain constant function prototype.
  * Return: 0 Always
@@ -115,11 +115,11 @@ int _my_alias(info_t *info)
 	}
 	for (r = 1; info->argv[r]; r++)
 	{
-		w = _strchar(info->argv[r], '=');
+		w = _str_char(info->argv[r], '=');
 		if (w)
 			set_alias_str(info, info->argv[r]);
 		else
-			print_alias_str(node_starts_with_(info->alias, info->argv[r], '='));
+			print_alias_str(_nd_starts_with_(info->alias, info->argv[r], '='));
 	}
-	return (0);
+sigreturn (0);
 }

@@ -35,8 +35,8 @@ char **_list_to_str(list_t *head)
 
 	if (!head)
 		return (NULL);
-if (!n)
-	return (NULL);
+    if (!n)
+        return (NULL);
 	strs = malloc(sizeof(char *) * (n + 1));
 	if (!strs)
 		return (NULL);
@@ -71,15 +71,15 @@ size_t print_list_el_link(const list_t *h)
 
 	while (h)
 	{
-		_puts(convert_number(h->num, 10, 0));
-		_putchar(':');
-		_putchar(' ');
-		_puts(h->str ? h->str : "(nil)");
-		_puts("\n");
+		_puts_str(convert_number(h->num, 10, 0));
+		_put_char_std(':');
+		_put_char_std(' ');
+		_puts_str(h->str ? h->str : "(nil)");
+		_puts_str("\n");
 		h = h->next;
-		i++;
+		n++;
 	}
-	return (i);
+	return (n);
 }
 
 

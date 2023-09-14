@@ -16,7 +16,7 @@ int is_cmd_ex(info_t *info, char *path)
 	(void)info;
 	if (!path)
 		return (0);
-	if (stat(path, &st)
+	if (stat(path, &st))
 		return (0);
 	if (st.st_mode & S_IFREG)
 	{
@@ -47,7 +47,7 @@ char *_dupul_chars(char *pathstr, int start, int stop)
 	{
 		r < stop;
 		r++
-
+		
 		if (pathstr[r] != ':')
 		{
 			buf[m++] = pathstr[r];
@@ -85,7 +85,7 @@ char *find_cmd_path(info_t *info, char *pathstr, char *cmd)
 		{
 			path = _dupul_chars(pathstr, curr_pos, i);
 			if (!*path)
-				_strcat(path, cmd);
+				_str_cat(path, cmd);
 			else
 			{
 				_str_cat(path, "/");
