@@ -3,7 +3,7 @@
 /**
  * _gets_environ - Function to returns the string array copy of our environ
  * @info: Structure containing potential arguments.
- * Used to maintain constant function prototype.
+ *	Used to maintain constant function prototype.
  * Return: 0 Always
  */
 
@@ -21,8 +21,9 @@ char **_gets_environ(info_t *info)
 /**
  * _unsetenvirn - Function to Remove an environment variable
  * @info: Structure containing potential arguments.
- * It is Used to maintain
- * constant function prototype.
+ * 	It is Used to maintain
+ *	constant function prototype.
+
  * Return: on delete 1 , otherwise 0
  * @var: the string env variable property
  */
@@ -76,12 +77,12 @@ int _setenvirn(info_t *info, char *var, char *value)
 	if (!value)
 		return (0);
 
-	buff = malloc(_strlen(var) + _strlen(value) + 2);
+	buff = malloc(_str_length(var) + _str_length(value) + 2);
 	if (!buff)
 		return (1);
-	_strcpy(buff, var);
-	_strcat(buff, "=");
-	_strcat(buff, value);
+	_str_cpy(buff, var);
+	_str_cat(buff, "=");
+	_str_cat(buff, value);
 	node = info->envirn;
 	while (node)
 	{

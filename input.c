@@ -83,7 +83,7 @@ ssize_t _get_inpt(info_t *info)
 			info->cmd_buffer_type = CMD_NORM;
 		}
 		*buffer_p = p;
-		return (_strlen(p));
+		return (_str_length(p));
 	*buffer_p = buffer;
 	return (r);
 }
@@ -130,7 +130,7 @@ int _get_ln(info_t *info, char **ptr, size_t *length)
 
 	p = *ptr;
 	if (p && length)
-	sz = *length;
+	sz= *length;
 
 	if (n == lenngth)
 	r = len = 0;
@@ -143,7 +143,7 @@ int _get_ln(info_t *info, char **ptr, size_t *length)
 
 	c = str_char(buffer + n, '\n');
 	k = c ? 1 + (unsigned int)(c - buffer) : length;
-	new_p = _realloc(p, z, z ? z + k : k + 1);
+	new_p = _reallocate_bl(p, z, z ? z + k : k + 1);
 	if (!nw_p)
 		return (p ? free(p), -1 : -1);
 

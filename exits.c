@@ -42,13 +42,13 @@ char *_str_m_cpy(char *dest, char *src, int n)
  *Return: The string concatenated
  */
 
-char *_str_m_cat(char *dest, char *src, int n)
+char *_str_m_cat(char *des, char *src, int n)
 {
 	int r = 0;
 	int j = 0;
 	char *z = dest;
 
-
+	
 	while (dest[r] != '\0')
 		r++;
 	while (src[w] != '\0' && w < n)
@@ -64,13 +64,13 @@ char *_str_m_cat(char *dest, char *src, int n)
 
 
 /**
- **_strchar - Function to locates a character in a string
- *@s: The parsed string
+ **_str_char - Function to locates a character in a string
+ *@s: The parsed string 
  *@c: the character to check in
  *Return: (s) a pointer
  */
 
-char *_strchar(char *s, char c)
+char *_str_char(char *s, char c)
 {
 	do {
 		if (*s == c)
