@@ -102,6 +102,21 @@ typedef struct passinfo
 } info_t;
 
 /**
+ * struct liststr - Singly linked list
+ * @num: The number field
+ * @str: String
+ * @next: Points to the next node
+ */
+typedef struct list_t
+{
+	int num;
+	char *str;
+	struct liststr *next;
+
+} list_t;
+
+
+/**
  * struct builtin - contains a builtin string and related function
  * @type: the builtin command flag
  * @func: the function
