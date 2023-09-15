@@ -1,13 +1,13 @@
 #include "main.h"
 
 /**
- * _gets_environ - Function to returns the string array copy of our environ
+ * _get_environ - Function to returns the string array copy of our environ
  * @info: Structure containing potential arguments.
  *	Used to maintain constant function prototype.
  * Return: 0 Always
  */
 
-char **_gets_environ(info_t *info)
+char **_get_environ(info_t *info)
 {
 	if (!info->env || info->env_changed)
 	{
