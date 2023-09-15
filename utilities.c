@@ -71,8 +71,8 @@ int _atoi_int(char *s)
 		if (s[r] >= '0' && s[r] <= '9')
 		{
 			flag = 1;
-			result *= 10;
-			result += (s[r] - '0');
+			rslt *= 10;
+			rslt += (s[r] - '0');
 		}
 		else if (flag == 1)
 			flag = 2;

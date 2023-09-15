@@ -33,16 +33,15 @@ char **_list_to_str(list_t *head)
 	size_t n = _list_length_link(head), w;
 	char **strs, *str;
 
-	if (!head)
-		return (NULL);
-    if (!n)
-        return (NULL);
+	if (!head || !n)
+        	return (NULL);
+
 	strs = malloc(sizeof(char *) * (n + 1));
 	if (!strs)
 		return (NULL);
 	for (n = 0; nd; nd = nd->next, n++)
 	{
-		str = malloc(_strlen(nd->str) + 1);
+		str = malloc(_str_length(nd->str) + 1);
 		if (!str)
 		{
 			for (w = 0; w < n; w++)
@@ -51,7 +50,7 @@ char **_list_to_str(list_t *head)
 			return (NULL);
 		}
 
-		str = _str_cpy(str, node->str);
+		str = _str_cpy(str, nd->str);
 		strs[n] = str;
 	}
 	strs[n] = NULL;
@@ -71,7 +70,7 @@ size_t print_list_el_link(const list_t *h)
 
 	while (h)
 	{
-		_puts_str(convert_number(h->num, 10, 0));
+		_puts_str(_convert_nb(h->num, 10, 0));
 		_put_char_std(':');
 		_put_char_std(' ');
 		_puts_str(h->str ? h->str : "(nil)");

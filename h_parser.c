@@ -43,10 +43,8 @@ char *_dupul_chars(char *pathstr, int start, int stop)
 	int m = 0;
 
 
-	while (r = start)
+	for (m = 0, r = start;  r < stop;  r++)
 	{
-		r < stop;
-		r++
 		
 		if (pathstr[r] != ':')
 		{
@@ -83,7 +81,7 @@ char *find_cmd_path(info_t *info, char *pathstr, char *cmd)
 	{
 		if (!pathstr[r] || pathstr[r] == ':')
 		{
-			path = _dupul_chars(pathstr, curr_pos, i);
+			path = _dupul_chars(pathstr, current_pos, r);
 			if (!*path)
 				_str_cat(path, cmd);
 			else

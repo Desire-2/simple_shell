@@ -9,9 +9,9 @@
 
 char **_gets_environ(info_t *info)
 {
-	if (!info->environ || info->env_changed)
+	if (!info->env || info->env_changed)
 	{
-		info->environ = list_to_strings(info->env);
+		info->environ = _list_to_str(info->env);
 		info->env_changed = 0;
 	}
 	return (info->environ);
@@ -30,7 +30,7 @@ char **_gets_environ(info_t *info)
 
 int _unsetenvirn(info_t *info, char *var)
 {
-	list_t *node = info->envirn;
+	list_t *node = info->env;
 	size_t r = 0;
 	char *m;
 
@@ -45,7 +45,7 @@ int _unsetenvirn(info_t *info, char *var)
 		{
 			info->env_changed = delete_node_at_index_of(&(info->env), r);
 			r = 0;
-			node = info->envirn;
+			node = info->env;
 			continue;
 		}
 		node = node->next;
@@ -83,7 +83,7 @@ int _setenvirn(info_t *info, char *var, char *value)
 	_str_cpy(buff, var);
 	_str_cat(buff, "=");
 	_str_cat(buff, value);
-	node = info->envirn;
+	node = info->env;
 	while (node)
 	{
 		m = starts_with_node(node->str, var);
@@ -96,7 +96,7 @@ int _setenvirn(info_t *info, char *var, char *value)
 		}
 		node = node->next;
 	}
-	add_node_ to_end(&(info->env), buff, 0);
+	add_node_to_end(&(info->env), buff, 0);
 	free(buff);
 	info->env_changed = 1;
 	return (0);

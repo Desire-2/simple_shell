@@ -36,10 +36,10 @@ int main(int ac, char **av)
 			}
 			return (EXIT_FAILURE);
 		}
-		info->readfd = fd;
+		info->readfd = file;
 	}
 	populate_envnt_list(info);
-	read_file_history(info);
+	_read_hist(info);
 	shell_hsh(info, av);
 	return (EXIT_SUCCESS);
 }

@@ -21,13 +21,13 @@ ssize_t _input_buffer(info_t *info, char **buf, size_t *len)
 	{
 		free(*buf);
 		*buf = NULL;
-		signal(SIGINT, sigint_Handler_ctr);
+		signal(SIGINT,  sigintHandler);
 
 #if USE_GETLINE
 		n = _get_line(buf, &length_p, stdin);
 
 #else
-		r = _get_ln(info, buf, &length_p);
+		n = _get_ln(info, buf, &length_p);
 
 #endif
 		if (n > 0)
@@ -37,8 +37,8 @@ ssize_t _input_buffer(info_t *info, char **buf, size_t *len)
 				(*buf)[n - 1] = '\0';
 				n--;
 			}
-			info->line_cnt_flag = 1;
-			_rm_comments(*buf);
+			info->linecount_flag = 1;
+			_rm_comment(*buf);
 			_build_hist_l(info, *buf, info->histcount++);
 				*len = n;
 				info->cmd_buf = buf;
@@ -58,29 +58,29 @@ ssize_t _get_inpt(info_t *info)
 	ssize_t r = 0;
 	static char *buffer;
 	char **buffer_p = &(info->arg), *p;
-	static size_t n, w, length;
+	static size_t n, w, len;
 
 	_put_char_std(BUF_FLUSH);
-	r = _input_buffer(info, &buffer, &length);
+	r = _input_buffer(info, &buffer, &len);
 	if (r == -1)
 		return (-1);
-	if (length)
+	if (len)
 	{
 		w = n;
 		p = buffer + n;
 
-		check_chain_st(info, buffer, &w, r, length);
-		while (w < length)
+		check_chain_st(info, buffer, &w, r, len);
+		while (w < len)
 		{
 			if (is_char_chain(info, buffer, &w))
 			break;
 			w++;
 		}
 		n = w + 1;
-		if (n >= length)
+		if (n >= len)
 		{
-			n = length = 0;
-			info->cmd_buffer_type = CMD_NORM;
+			n = len = 0;
+			info->cmd_buf_type = CMD_NORM;
 		}
 		*buffer_p = p;
 		return (_str_length(p));
@@ -99,13 +99,16 @@ ssize_t _get_inpt(info_t *info)
 
 ssize_t _rd_buffer(info_t *info, char *buf, size_t *i)
 {
-	ssize_t n = 0;
+	ssize_t n;
+	n = 0;
+
 
 	if (*i)
 		return (0);
+
 	n = read(info->readfd, buf, READ_BUF_SIZE);
 	if (n >= 0)
-		*i = n;
+		*i = (size_t)n;
 	return (n);
 }
 
@@ -122,41 +125,43 @@ ssize_t _rd_buffer(info_t *info, char *buf, size_t *i)
 int _get_ln(info_t *info, char **ptr, size_t *length)
 {
 	static char buffer[READ_BUF_SIZE];
-	static size_t n, length;
+	static size_t n, leng;
 	size_t k;
-	ssize_t r = 0, z = 0;
+	ssize_t r;
+	int z = 0;
 	char *p = NULL;
 	char *nw_p = NULL, *c;
 
+	r = 0;
 	p = *ptr;
 	if (p && length)
-	sz= *length;
+		z= *length;
 
-	if (n == lenngth)
-	r = len = 0;
-	r = read_buf(info, buffer, &length);
+	if (n == leng)
+		r = leng = 0;
+	r = _rd_buffer(info, buffer, &leng);
 
 	if (r == -1)
 		return (-1);
-	if  (r == 0 && length == 0)
+	if  (r == 0 && leng == 0)
 		return (-1);
 
-	c = str_char(buffer + n, '\n');
-	k = c ? 1 + (unsigned int)(c - buffer) : length;
-	new_p = _reallocate_bl(p, z, z ? z + k : k + 1);
+	c = _str_char(buffer + n, '\n');
+	k = c ? 1 + (unsigned int)(c - buffer) : leng;
+	nw_p = _reallocate_bl(p, z, z ? z + k : k + 1);
 	if (!nw_p)
 		return (p ? free(p), -1 : -1);
 
 	if (z)
-	_str_m_cat(nw_p, buffer + r, k - r);
+		_str_m_cat(nw_p, buffer + r, k - r);
 	else
-	_str_m_cpy(nw_p, buffer + r, k - r + 1);
+		_str_m_cpy(nw_p, buffer + r, k - r + 1);
 	z += k - n;
 	n = k;
 	p = nw_p;
 
 	if (length)
-	*length = s;
+		*length = z;
 	*ptr = p;
 	return (z);
 
@@ -170,7 +175,7 @@ int _get_ln(info_t *info, char **ptr, size_t *length)
  * Return: void
  */
 
-void sigint_Handler_ctrl(__attribute__((unused))int sig_num)
+void sigintHandler(__attribute__((unused))int sig_num)
 {
 	_puts_str("\n");
 	_puts_str("$ ");

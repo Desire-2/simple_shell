@@ -19,18 +19,18 @@ int is_char_chain(info_t *info, char *buf, size_t *p)
 	{
 		buf[w] = 0;
 		w++;
-		info->cmd_buffer_type = CMD_OR;
+		info->cmd_buf_type = CMD_OR;
 	}
 	else if (buf[w] == '&' && buf[w + 1] == '&')
 	{
 		buf[w] = 0;
 		w++;
-		info->cmd_buffer_type = CMD_AND;
+		info->cmd_buf_type = CMD_AND;
 	}
 	else if (buf[w] == ';')
 	{
 		buf[w] = 0;
-		info->cmd_buffer_type = CMD_CHAIN;
+		info->cmd_buf_type = CMD_CHAIN;
 	}
 	else
 		return (0);
@@ -55,7 +55,7 @@ void check_chain_st(info_t *info, char *buf, size_t *p, size_t i, size_t len)
 {
 	size_t w = *p;
 
-	if (info->cmd_buffer_type == CMD_AND)
+	if (info->cmd_buf_type == CMD_AND)
 	{
 		if (info->status)
 		{
@@ -90,14 +90,14 @@ int rep_alias(info_t *info)
 
 	for (r = 0; r < 10; r++)
 	{
-		node = node_starts_with_(info->alias, info->argv[0], '=');
+		node = _nd_starts_with_(info->alias, info->argv[0], '=');
 		if (!node)
 			return (0);
 		free(info->argv[0]);
-		w = _str_chr(node->str, '=');
+		w = _str_char(node->str, '=');
 		if (!w)
 			return (0);
-		p = _str_duplicate(w + 1);
+		w = _str_duplicate(w + 1);
 		if (!w)
 			return (0);
 		info->argv[0] = w;
@@ -127,24 +127,24 @@ int rep_vars(info_t *info)
 
 		if (!_str_cmp_two(info->argv[r], "$?"))
 		{
-			rep_string(&(info->argv[r]),
-				_str_dupulicate(convert_number(info->status, 10, 0)));
+			rep_str(&(info->argv[r]),
+				_str_duplicate(_convert_nb(info->status, 10, 0)));
 			continue;
 		}
-		if (!_str_cmp_two(info->argv[i], "$$"))
+		if (!_str_cmp_two(info->argv[r], "$$"))
 		{
-			rep_str(&(info->argv[i]),
-						_str_dupulicate(convert_number(getpid(), 10, 0)));
+			rep_str(&(info->argv[r]),
+						_str_duplicate(_convert_nb(getpid(), 10, 0)));
 			continue;
 		}
-		node = node_starts_with_(info->env, &info->argv[r][1], '=');
+		node = _nd_starts_with_(info->env, &info->argv[r][1], '=');
 		if (node)
 		{
-			rep_str(&(info->argv[i]),
-						_strd_upulicate(_str_char(node->str, '=') + 1));
+			rep_str(&(info->argv[r]),
+						_str_duplicate(_str_char(node->str, '=') + 1));
 			continue;
 		}
-		rep_str(&info->argv[i], _str_dupulicate(""));
+		rep_str(&info->argv[r], _str_duplicate(""));
 
 	}
 	return (0);

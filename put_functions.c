@@ -14,7 +14,7 @@ void _eputs_str(char *str)
 		return;
 	while (str[n] != '\0')
 	{
-		_eput_char_stderr(str[i]);
+		_eput_char_stderr(str[n]);
 		n++;
 	}
 }
@@ -35,11 +35,11 @@ int _eput_char_stderr(char c)
 
 	if (c == BUF_FLUSH || n >= WRITE_BUF_SIZE)
 	{
-		write(2, buf, n);
+		write(2, buffer, n);
 		n = 0;
 	}
 	if (c != BUF_FLUSH)
-		buf[n++] = c;
+		buffer[n++] = c;
 	return (1);
 }
 
@@ -64,7 +64,7 @@ int _put_fld(char c, int fd)
 		n = 0;
 	}
 	if (c != BUF_FLUSH)
-		buf[n++] = c;
+		buffer[n++] = c;
 	return (1);
 }
 

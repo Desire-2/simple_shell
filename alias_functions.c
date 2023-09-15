@@ -8,7 +8,7 @@
 
 int _my_hist(info_t *info)
 {
-	print_list(info->history);
+	prints_list_string(info->history);
 	return (0);
 
 }
@@ -18,7 +18,6 @@ int _my_hist(info_t *info)
 * unset_alias_to_str - Function to sets alias to string
  * @info: parameter struct
  * @str: the alias string
-g*
  * Return: 0 on success, 1 on error
  */
 
@@ -33,7 +32,7 @@ int  unset_alias_to_str(info_t *info, char *str)
 		return (1);
 	c = *w;
 	*w = 0;
-	return = delete_node_at_index_of(&(info->alias),
+	retrn = delete_node_at_index_of(&(info->alias),
 		get_nd_index_on(info->alias, _nd_starts_with_(info->alias, str, -1)));
 	*w = c;
 	return (retrn);
@@ -121,5 +120,5 @@ int _my_alias(info_t *info)
 		else
 			print_alias_str(_nd_starts_with_(info->alias, info->argv[r], '='));
 	}
-sigreturn (0);
+	return (0);
 }

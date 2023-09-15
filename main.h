@@ -40,6 +40,20 @@
 extern char **environ;
 
 /**
+ * struct liststr - Singly linked list
+ * @num: The number field
+ * @str: String
+ * @next: Points to the next node
+ */
+typedef struct liststr
+{
+	int num;
+	char *str;
+	struct liststr *next;
+
+} list_t;
+
+/**
  * struct passinfo - Function Contains pseudo-arguements,
  * to be passed into another function,
  * allowing uniform prototype for function pointer struct
@@ -86,21 +100,6 @@ typedef struct passinfo
 	int histcount;
 
 } info_t;
-
-/**
- * struct liststr - Singly linked list
- * @num: The number field
- * @str: String
- * @next: Points to the next node
- */
-typedef struct liststr
-{
-	int num;
-	char *str;
-	struct liststr *next;
-
-} list_t;
-
 
 /**
  * struct builtin - contains a builtin string and related function
@@ -156,8 +155,9 @@ int is_char_chain(info_t *info, char *buf, size_t *p);
 int rep_alias(info_t *info);
 int rep_vars(info_t *info);
 int rep_str(char **old, char *new);
+int _my_unset_envirn(info_t *info);
 
-char **_gets_environ(info_t *info);
+char **_get_environ(info_t *info);
 char *_str_m_cpy(char *dest, char *src, int n);
 char *_str_m_cat(char *des, char *src, int n);
 char *_str_char(char *s, char c);
@@ -166,7 +166,7 @@ char *find_cmd_path(info_t *info, char *pathstr, char *cmd);
 char *_get_hist_in_file(info_t *info);
 char **_list_to_str(list_t *head);
 char *_mem_set_cons(char *s, char b, unsigned int n);
-char *_gets_environ(info_t *info, const char *name);
+char *_getenviron(info_t *info, const char *name);
 char *_convert_nb(long int num, int base, int flags);
 char *starts_with_node(const char *haystack, const char *needle);
 char *_str_cat(char *dest, char *src);
@@ -183,7 +183,7 @@ size_t prints_list_string(const list_t *h);
 size_t _list_length_link(const list_t *h);size_t print_list_el_link(const list_t *h);
 
 
-void sigint_Handler_ctrl(__attribute__((unused))int sig_num);
+void sigintHandler(__attribute__((unused))int sig_num);
 void _free_list_nds(list_t **head_ptr);
 void _str_frees(char **pp);
 void *_reallocate_bl(void *ptr, unsigned int old_size, unsigned int new_size);

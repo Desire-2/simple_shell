@@ -19,7 +19,7 @@ int shell_hsh(info_t *info, char **av)
 		if (interactive_mode(info))
 			_puts_str("$ ");
 		_eput_char_stderr(BUF_FLUSH);
-		x = get_input(info);
+		x = _get_inpt(info);
 		if (x != -1)
 		{
 			_set_inform(info, av);
@@ -35,7 +35,7 @@ int shell_hsh(info_t *info, char **av)
 	_free_inform(info, 1);
 	if (!interactive_mode(info) && info->status)
 		exit(info->status);
-	if (builtin_ret == -2)
+	if (builtin_rtn == -2)
 	{
 		if (info->err_num == -1)
 			exit(info->status);
@@ -73,9 +73,9 @@ int _find_builtin_cmd(info_t *info)
 
 	for (n = 0; builtintbl[n].type; n++)
 	{
-		if (_str_cmp_two(info->argv[0], builtintbl[i].type) == 0)
+		if (_str_cmp_two(info->argv[0], builtintbl[n].type) == 0)
 		{
-			info->line_coutnt++;
+			info->line_count++;
 			builtin_rtn = builtintbl[n].func(info);
 			break;
 		}
@@ -95,19 +95,19 @@ void _find_cmd_p(info_t *info)
 	char *pth = NULL;
 	int n, m;
 
-	info->pth = info->argv[0];
-	if (info->line_cnt_flag == 1)
+	info->path = info->argv[0];
+	if (info->linecount_flag == 1)
 	{
 		info->line_count++;
-		info->line_cnt_flag = 0;
+		info->linecount_flag = 0;
 	}
 	for (n = 0, m = 0; info->arg[n]; m++)
-		if (!is_delimeter(info->arg[i], " \t\n"))
+		if (!is_delimimeter(info->arg[n], " \t\n"))
 		m++;
 	if (!m)
 		return;
 
-	path = find_cmd_path(info, _get_envirn(info, "PATH="), info->argv[0]);
+	pth = find_cmd_path(info, _getenviron(info, "PATH="), info->argv[0]);
 	if (pth)
 	{
 		info->path = pth;
@@ -115,7 +115,7 @@ void _find_cmd_p(info_t *info)
 	}
 	else
 	{
-		if ((interactive_mode(info) || _get_envirn(info, "PATH=")
+		if ((interactive_mode(info) || _getenviron(info, "PATH=")
 			|| info->argv[0][0] == '/') && is_cmd_ex(info, info->argv[0]))
 		fork_cmd_exec(info);
 		else if (*(info->arg) != '\n')
@@ -143,7 +143,7 @@ void fork_cmd_exec(info_t *info)
 	}
 	if (chld_pd == 0)
 	{
-		if (execve(info->path, info->argv, _gets_environ(info)) == -1)
+		if (execve(info->path, info->argv, _get_environ(info)) == -1)
 		{
 			_free_inform(info, 1);
 			if (errno == EACCES)

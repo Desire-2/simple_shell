@@ -1,4 +1,4 @@
-shell_memory.c#include "main.h"
+#include "main.h"
 
 /**
  * _str_length - Function that returns the length of a string
