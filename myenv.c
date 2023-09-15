@@ -2,7 +2,7 @@
 #include "main.h"
 
 /**
- * _mye_nvirn - Function to print the current environment
+ * _my_envirn - Function to print the current environment
  * @info: Structure containing potential arguments.
  *		Used to maintain constant function prototype.
  * Return: 0 Always
@@ -23,7 +23,7 @@ int _my_envirn(info_t *info)
  * Return: the value
  */
 
-char *_getenvirn(info_t *info, const char *name)
+char *_getenviron(info_t *info, const char *name)
 {
 	list_t *node = info->env;
 	char *i;
@@ -40,14 +40,14 @@ char *_getenvirn(info_t *info, const char *name)
 
 
 /**
- * _my_set_env - Function to Initialize a new environment variable,
+ * _my_set_envirn - Function to Initialize a new environment variable,
  *		or modify an existing one
  * @info: Structure containing potential arguments.
  *	Used to maintain constant function prototype.
  *  Return: 0 Always
  */
 
-int _my_set_env(info_t *info)
+int _my_set_envirn(info_t *info)
 {
 	if (info->argc != 3)
 	{
