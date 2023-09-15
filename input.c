@@ -155,4 +155,3 @@ void sigintHandler(__attribute__((unused)) int sig_num) {
     _puts_str("$ ");
     _put_char_std(BUF_FLUSH);
 }
-

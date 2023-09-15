@@ -6,7 +6,7 @@
  * @info: struct address
  */
 
-void clear_inform(info_t *info)
+void _clear_inform(info_t *info)
 {
 	info->arg = NULL;
 	info->argv = NULL;
@@ -22,7 +22,7 @@ void clear_inform(info_t *info)
  * @av: argument vector in shell
  */
 
-void set_inform(info_t *info, char **av)
+void _set_inform(info_t *info, char **av)
 {
 	int r = 0;
 
@@ -56,7 +56,7 @@ void set_inform(info_t *info, char **av)
  * @all: if freeing all fields true
  */
 
-void free_inform(info_t *info, int all)
+void _free_inform(info_t *info, int all)
 {
 	_str_frees(info->argv);
 	info->argv = NULL;

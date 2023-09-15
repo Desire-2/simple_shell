@@ -16,7 +16,8 @@ char *_get_hist_in_file(info_t *info)
 
 	if (!direct)
 		return (NULL);
-	buffer = malloc(sizeof(char) * (_str_length(direct) + _str_length(HIST_FILE) + 2));
+	buffer = malloc(sizeof(char) * (_str_length(direct) +
+							_str_length(HIST_FILE) + 2));
 	if (!buffer)
 		return (NULL);
 	buffer[0] = 0;
@@ -57,7 +58,7 @@ int _write_hist(info_t *info)
 	close(fil);
 	return (1);
 
-} 
+}
 
 
 /**

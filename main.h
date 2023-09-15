@@ -102,21 +102,6 @@ typedef struct passinfo
 } info_t;
 
 /**
- * struct liststr - Singly linked list
- * @num: The number field
- * @str: String
- * @next: Points to the next node
- */
-typedef struct list_t
-{
-	int num;
-	char *str;
-	struct liststr *next;
-
-} list_t;
-
-
-/**
  * struct builtin - contains a builtin string and related function
  * @type: the builtin command flag
  * @func: the function
@@ -127,8 +112,6 @@ typedef struct builtin
 	int (*func)(info_t *);
 
 } builtin_table;
-
-
 
 int _my_hist(info_t *info);
 int  unset_alias_to_str(info_t *info, char *str);
