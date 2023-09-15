@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * interactive - interactive mode of the shell
+ * interactive_mode - interactive mode of the shell
  *		 It determines whether the shell is running in interactive mode or not.
  * @info: a pointer to be taken to a structure of type info_t as an argument.
  *

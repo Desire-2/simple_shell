@@ -90,7 +90,7 @@ int print_alias_str(list_t *node)
 
 
 /**
- * _mya_lias - Function to mimics the alias builtin (man alias)
+ * _my_alias - Function to mimics the alias builtin (man alias)
  * @info: Structure containing potential arguments.
  *	Used to maintain constant function prototype.
  * Return: 0 Always

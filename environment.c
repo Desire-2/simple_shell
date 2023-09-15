@@ -7,7 +7,7 @@
  * Return: 0 Always
  */
 
-char **_gets_environ(info_t *info)
+char **_get_environ(info_t *info)
 {
 	if (!info->env || info->env_changed)
 	{

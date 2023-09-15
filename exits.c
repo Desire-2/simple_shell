@@ -35,11 +35,11 @@ char *_str_m_cpy(char *dest, char *src, int n)
 
 
 /**
- **_str_m_cat - Function to concatenate two strings
- *@dest: The initial string
- *@src: The the following string
- *@n: The bytes  amount to be maximally used
- *Return: The string concatenated
+ * _str_m_cat - Function to concatenate two strings
+ * @des: The initial string
+ * @src: The the following string
+ * @n: The bytes  amount to be maximally used
+ * Return: The string concatenated
  */
 
 char *_str_m_cat(char *des, char *src, int n)
@@ -48,7 +48,7 @@ char *_str_m_cat(char *des, char *src, int n)
 	int j = 0;
 	char *z = des;
 
-	
+
 	while (des[r] != '\0')
 		r++;
 	while (src[j] != '\0' && j < n)
@@ -65,7 +65,7 @@ char *_str_m_cat(char *des, char *src, int n)
 
 /**
  **_str_char - Function to locates a character in a string
- *@s: The parsed string 
+ *@s: The parsed string
  *@c: the character to check in
  *Return: (s) a pointer
  */
