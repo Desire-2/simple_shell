@@ -43,7 +43,7 @@ char *_str_duplicate(const char *str)
 	if (!rtn)
 		return (NULL);
 	for (len++; len--;)
-		ret[len] = *--str;
+		rtn[len] = *--str;
 	return (rtn);
 }
 
@@ -78,10 +78,10 @@ void _puts_str(char *str)
 
 int _put_char_std(char c)
 {
-	static char buffer[WRITE_BUF_SIZE]
+	static char buffer[WRITE_BUF_SIZE];
 	static int n;
 
-	if (c == BUF_FLUSH || i >= WRITE_BUF_SIZE)
+	if (c == BUF_FLUSH || n >= WRITE_BUF_SIZE)
 	{
 		write(1, buffer, n);
 		n = 0;

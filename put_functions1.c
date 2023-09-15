@@ -43,7 +43,7 @@ void _print_errors(info_t *info, char *estr)
 {
 	_eputs_str(info->fname);
 	_eputs_str(": ");
-	print_d(info->line_count, STDERR_FILENO);
+	_print_dc(info->line_count, STDERR_FILENO);
 	_eputs_str(": ");
 	_eputs_str(info->argv[0]);
 	_eputs_str(": ");
@@ -61,14 +61,14 @@ void _print_errors(info_t *info, char *estr)
 
 int _print_dc(int input, int fd)
 {
-    int n, cnt = 0;
-	int (*__putchar)(char) = _putchar;
+	int n, cnt = 0;
+	int (*__putchar)(char) = _put_char_std;
 	unsigned int _abs_;
-    unsigned int current;
+	unsigned int current;
 
 
 	if (fd == STDERR_FILENO)
-		__putchar = _eputchar;
+		__putchar = _eput_char_stderr;
 	if (input < 0)
 	{
 		_abs_ = -input;
@@ -78,9 +78,9 @@ int _print_dc(int input, int fd)
 	else
 		_abs_ = input;
 	current = _abs_;
-	for (n = 1000000000; i > 1; i /= 10)
+	for (n = 1000000000; n > 1; n /= 10)
 	{
-		if (_abs_ / i)
+		if (_abs_ / n)
 		{
 			__putchar('0' + current / n);
 			cnt++;
@@ -103,11 +103,11 @@ int _print_dc(int input, int fd)
 
 char *_convert_nb(long int num, int base, int flags)
 {
-    char *ptr;
-    unsigned long i = num;
-	static char *array, buf[50];
+	char *ptr;
+	unsigned long i = num;
 	char sign = 0;
-	
+	static char buffer[50];
+	static char *array;
 
 
 	if (!(flags & CONVERT_UNSIGNED) && num < 0)

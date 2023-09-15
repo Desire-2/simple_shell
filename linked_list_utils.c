@@ -21,7 +21,7 @@ list_t *_add_node_start(list_t **head, const char *str, int num)
 	if (!nw_hd)
 		return (NULL);
 	_mem_set_cons((void *)nw_hd, 0, sizeof(list_t));
-	new_head->num = num;
+	nw_hd->num = num;
 	if (str)
 	{
 		nw_hd->str = _str_duplicate(str);
@@ -59,7 +59,7 @@ list_t *add_node_to_end(list_t **head, const char *str, int num)
 	if (!nw_node)
 		return (NULL);
 	_mem_set_cons((void *)nw_node, 0, sizeof(list_t));
-	new_node->num = num;
+	nw_node->num = num;
 	if (str)
 	{
 		nw_node->str = _str_duplicate(str);
@@ -76,8 +76,8 @@ list_t *add_node_to_end(list_t **head, const char *str, int num)
 		nd->next = nw_node;
 	}
 	else
-		*head = nw_nde;
-	return (nw_nde);
+		*head = nw_node;
+	return (nw_node);
 }
 
 
@@ -116,9 +116,7 @@ int delete_node_at_index_of(list_t **head, unsigned int index)
 	list_t *nd, *prev_nd;
 	unsigned int r = 0;
 
-	if (!head)
-		return (0);
-    if (!*head)
+	if (!head || !*head)
         return (0);
 
 	if (!index)
@@ -129,7 +127,10 @@ int delete_node_at_index_of(list_t **head, unsigned int index)
 		free(nd);
 		return (1);
 	}
-	node = *head;
+	if (!*head)
+		 return (0);
+
+	nd = *head;
 	while (nd)
 	{
 		if (r == index)
@@ -141,7 +142,7 @@ int delete_node_at_index_of(list_t **head, unsigned int index)
 		}
 		r++;
 		prev_nd = nd;
-		node = nd->next;
+		nd = nd->next;
 	}
 	return (0);
 }
@@ -156,14 +157,13 @@ int delete_node_at_index_of(list_t **head, unsigned int index)
 
 void _free_list_nds(list_t **head_ptr)
 {
-	list_t *nd, *next_nd, *hd;
+	list_t *nd, *next_nd, *head;
 
-	if (!head_ptr)
+	if (!head_ptr  || !*head_ptr)
 		return;
-    if (!*head_ptr)
-        return;
-	hd = *head_ptr;
-	nd = hd;
+    
+	head = *head_ptr;
+	nd = head;
 	while (nd)
 	{
 		next_nd = nd->next;

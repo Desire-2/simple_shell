@@ -12,15 +12,15 @@
 char *_get_hist_in_file(info_t *info)
 {
 	char *buffer;
-	char *direct = _getenvirn(info, "HOME=");
+	char *direct = _getenviron(info, "HOME=");
 
 	if (!direct)
 		return (NULL);
-	buf = malloc(sizeof(char) * (_str_length(dir) + _str_length(HIST_FILE) + 2));
+	buffer = malloc(sizeof(char) * (_str_length(direct) + _str_length(HIST_FILE) + 2));
 	if (!buffer)
 		return (NULL);
-	buf[0] = 0;
-	_str_cpy(buffer, direct\);
+	buffer[0] = 0;
+	_str_cpy(buffer, direct);
 	_str_cat(buffer, "/");
 	_str_cat(buffer, HIST_FILE);
 	return (buffer);
@@ -50,10 +50,10 @@ int _write_hist(info_t *info)
 		return (-1);
 	for (node = info->history; node; node = node->next)
 	{
-		_putsfd(node->str, fil);
-		_putfd('\n', fil);
+		_puts_fld(node->str, fil);
+		_put_fld('\n', fil);
 	}
-	_putfd(BUF_FLUSH, fil);
+	_put_fld(BUF_FLUSH, fil);
 	close(fil);
 	return (1);
 
@@ -70,30 +70,30 @@ int _write_hist(info_t *info)
 int _read_hist(info_t *info)
 {
 	int r, lst = 0, linecnt = 0;
-	ssize_t fil, rdlen, flsize = 0;
+	ssize_t fild, rdlen, flsize = 0;
 	struct stat st;
 	char *buffer = NULL;
 	char *filename = _get_hist_in_file(info);
 
 	if (!filename)
 		return (0);
-	fil = open(filename, O_RDONLY);
+	fild = open(filename, O_RDONLY);
 	free(filename);
-	if (fil == -1)
+	if (fild == -1)
 		return (0);
-	if (!fstat(fd, &st))
+	if (!fstat(fild, &st))
 		flsize = st.st_size;
 	if (flsize < 2)
 		return (0);
-	buffer = malloc(sizeof(char) * (fsize + 1));
+	buffer = malloc(sizeof(char) * (flsize + 1));
 	if (!buffer)
 		return (0);
-	rdlen = read(fil, buffer, flsize);
-	buf[flsize] = 0;
+	rdlen = read(fild, buffer, flsize);
+	buffer[flsize] = 0;
 	if (rdlen <= 0)
 		return (free(buffer), 0);
-	close(fd);
-	for (r = 0; (r < fsize); r++)
+	close(fild);
+	for (r = 0; (r < flsize); r++)
 	{
 		if (buffer[r] == '\n')
 		{

@@ -1,7 +1,8 @@
+
 #include "main.h"
 
 /**
- * _my_envirn - Function to print the current environment
+ * _mye_nvirn - Function to print the current environment
  * @info: Structure containing potential arguments.
  *		Used to maintain constant function prototype.
  * Return: 0 Always
@@ -15,7 +16,7 @@ int _my_envirn(info_t *info)
 
 
 /**
- * _getenvirn - gets the value of an environ variable
+ * _getenv - gets the value of an environ variable
  * @info: Structure containing potential arguments. Used to maintain
  * @name: env var name
  *
@@ -24,13 +25,13 @@ int _my_envirn(info_t *info)
 
 char *_getenvirn(info_t *info, const char *name)
 {
-	list_t *node = info->envirrn;
+	list_t *node = info->env;
 	char *i;
 
 	while (node)
 	{
-		i = starts_with(node->str, name);
-		if (i && *i)
+		i = starts_with_node(node->str, name);
+		if (i != NULL && *i != '0')
 			return (i);
 		node = node->next;
 	}
@@ -50,7 +51,7 @@ int _my_set_env(info_t *info)
 {
 	if (info->argc != 3)
 	{
-		_eputs("Incorrect number of arguement in shell\n");
+		_eputs_str("Incorrect number of arguement in shell\n");
 		return (1);
 	}
 	if (_setenvirn(info, info->argv[1], info->argv[2]))
@@ -68,11 +69,11 @@ int _my_set_env(info_t *info)
 
 int _my_unset_envirn(info_t *info)
 {
-	int m;
+	int n;
 
 	if (info->argc == 1)
 	{
-		_eputs("Too few arguements in shell.\n");
+		_eputs_str("Too few arguements in shell.\n");
 		return (1);
 	}
 	for (n = 1; n <= info->argc; n++)
@@ -96,6 +97,6 @@ int populate_envnt_list(info_t *info)
 
 	for (len = 0; environ[len]; len++)
 		add_node_to_end(&node, environ[len], 0);
-	info->envirn = node;
+	info->env = node;
 	return (0);
 }

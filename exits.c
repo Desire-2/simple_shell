@@ -23,7 +23,7 @@ char *_str_m_cpy(char *dest, char *src, int n)
 	}
 	if (r < n)
 	{
-		w = w;
+		w = r;
 		while (w < n)
 		{
 			dest[w] = '\0';
@@ -46,20 +46,20 @@ char *_str_m_cat(char *des, char *src, int n)
 {
 	int r = 0;
 	int j = 0;
-	char *z = dest;
+	char *z = des;
 
 	
-	while (dest[r] != '\0')
+	while (des[r] != '\0')
 		r++;
-	while (src[w] != '\0' && w < n)
+	while (src[j] != '\0' && j < n)
 	{
-		dest[w] = src[w];
+		des[j] = src[j];
 		r++;
-		w++;
+		j++;
 	}
-	if (w < n)
-		dest[w] = '\0';
-	return (s);
+	if (j < n)
+		des[j] = '\0';
+	return (z);
 }
 
 
