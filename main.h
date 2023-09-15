@@ -128,7 +128,7 @@ int _read_hist(info_t *info);
 int _build_hist_l(info_t *info, char *buf, int linecount);
 int _renumber_hist(info_t *info);
 int delete_node_at_index_of(list_t **head, unsigned int index);
-int _get_ln(info_t *info, char **ptr, size_t *length);
+int _getline(info_t *info, char **ptr, size_t *length);
 int _my_envirn(info_t *info);
 int _my_set_envirn(info_t *info);
 int populate_envnt_list(info_t *info);
