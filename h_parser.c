@@ -45,7 +45,6 @@ char *_dupul_chars(char *pathstr, int start, int stop)
 
 	for (m = 0, r = start;  r < stop;  r++)
 	{
-		
 		if (pathstr[r] != ':')
 		{
 			buf[m++] = pathstr[r];

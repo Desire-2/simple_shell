@@ -11,8 +11,8 @@
 int _err_atoi_int(char *s)
 {
 	unsigned long int rslt = 0;
-    int n = 0;
-	
+	int n = 0;
+
 	if (*s == '+')
 		s++;
 	for (n = 0;  s[n] != '\0'; n++)

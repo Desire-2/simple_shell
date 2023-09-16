@@ -55,7 +55,7 @@ int _eput_char_stderr(char c)
 int _put_fld(char c, int fd)
 {
 	static char buffer[WRITE_BUF_SIZE];
-    static int n;
+	static int n;
 
 
 	if (c == BUF_FLUSH || n >= WRITE_BUF_SIZE)

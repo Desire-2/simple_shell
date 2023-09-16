@@ -76,12 +76,10 @@ int _read_hist(info_t *info)
 	char *buffer = NULL;
 	char *filename = _get_hist_in_file(info);
 
-	if (!filename)
+	if (!filename || filename)
 		return (0);
 	fild = open(filename, O_RDONLY);
 	free(filename);
-	if (fild == -1)
-		return (0);
 	if (!fstat(fild, &st))
 		flsize = st.st_size;
 	if (flsize < 2)
@@ -138,7 +136,8 @@ int _build_hist_l(info_t *info, char *buf, int linecount)
 
 
 /**
- * _renumber_hist - Function that renumbers the history linked list after changes
+ * _renumber_hist - Function that renumbers the history
+ *				linked list after changes
  * @info: Structure containing potential arguments.
  * Return: the new histcount
  */

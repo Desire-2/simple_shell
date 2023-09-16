@@ -178,7 +178,8 @@ ssize_t _get_inpt(info_t *info);
 ssize_t _rd_buffer(info_t *info, char *buf, size_t *i);
 ssize_t get_nd_index_on(list_t *head, list_t *node);
 size_t prints_list_string(const list_t *h);
-size_t _list_length_link(const list_t *h);size_t print_list_el_link(const list_t *h);
+size_t _list_length_link(const list_t *h);
+size_t print_list_el_link(const list_t *h);
 
 
 void sigintHandler(__attribute__((unused))int sig_num);

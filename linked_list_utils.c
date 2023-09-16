@@ -117,7 +117,7 @@ int delete_node_at_index_of(list_t **head, unsigned int index)
 	unsigned int r = 0;
 
 	if (!head || !*head)
-        return (0);
+		return (0);
 
 	if (!index)
 	{
@@ -128,7 +128,7 @@ int delete_node_at_index_of(list_t **head, unsigned int index)
 		return (1);
 	}
 	if (!*head)
-		 return (0);
+		return (0);
 
 	nd = *head;
 	while (nd)
@@ -161,7 +161,7 @@ void _free_list_nds(list_t **head_ptr)
 
 	if (!head_ptr  || !*head_ptr)
 		return;
-    
+
 	head = *head_ptr;
 	nd = head;
 	while (nd)

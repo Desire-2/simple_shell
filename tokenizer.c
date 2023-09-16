@@ -15,9 +15,7 @@ char **str_to_words(char *str, char *d)
 	int r, k, m, nwords = 0, w;
 	char **s;
 
-	if (str == NULL)
-		return (NULL);
-	if (str[0] == 0)
+	if (str == NULL || str[0] == 0)
 		return (NULL);
 	if (!d)
 		d = " ";
@@ -38,15 +36,15 @@ char **str_to_words(char *str, char *d)
 		while (is_delimimeter(str[r], d))
 			r++;
 		k = 0;
-		while (is_delimimeter(str[r + k], d) && str[r+k])
+		while (is_delimimeter(str[r + k], d) && str[r + k])
 			k++;
 		s[w] = malloc((k + 1) * sizeof(char));
 		if (!s[w])
 		{
-			 for (k = 0; k < w; k++)
-				 free(s[k]);
-			  free(s);
-			   return (NULL);
+			for (k = 0; k < w; k++)
+				free(s[k]);
+			free(s);
+			return (NULL);
 		}
 		for (m = 0; m < k; m++)
 			s[w][m] = str[r++];
@@ -69,14 +67,12 @@ char **str_to_word(char *str, char d)
 	int r, k, m, w, nwords = 0;
 	char **s;
 
-	if (str == NULL)
-		return (NULL);
-	if (str[0] == 0)
+	if (str == NULL || str[0] == 0)
 		return (NULL);
 	for (r = 0; str[r] != '\0'; r++)
 	{
 
-		if ((str[r] != d) && (str[r + 1] == d || !str[r+1]))
+		if ((str[r] != d) && (str[r + 1] == d || !str[r + 1]))
 			nwords++;
 	}
 

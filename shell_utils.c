@@ -2,7 +2,7 @@
 
 
 /**
- * clear_inform - Function to initializes info_t struct
+ * _clear_inform - Function to initializes info_t struct
  * @info: struct address
  */
 
@@ -17,7 +17,7 @@ void _clear_inform(info_t *info)
 
 
 /**
- * set_inform - Function to initializes info_t struct
+ * _set_inform - Function to initializes info_t struct
  * @info: struct address in shell
  * @av: argument vector in shell
  */
@@ -51,7 +51,7 @@ void _set_inform(info_t *info, char **av)
 
 
 /**
- * free_inform - Function to frees info_t struct fields
+ * _free_inform - Function to frees info_t struct fields
  * @info: struct address
  * @all: if freeing all fields true
  */

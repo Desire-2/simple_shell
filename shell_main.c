@@ -14,14 +14,19 @@
 int main(int ac, char **av)
 {
 	info_t info[] = { INFO_INIT };
-	int file = 2;
+	int fild = 2;
 
-	asm ("mov %1, %0\n\t" "add $3, %0" : "=r" (file) : "r" (file));
+	asm (
+			"mov %1, %0\n\t"
+			"add $3, %0"
+			: "=r" (fild)
+			: "r" (fild)
+			);
 
 	if (ac == 2)
 	{
-		file = open(av[1], O_RDONLY);
-		if (file == -1)
+		fild = open(av[1], O_RDONLY);
+		if (fild == -1)
 		{
 			if (errno == EACCES)
 				exit(126);
@@ -30,13 +35,13 @@ int main(int ac, char **av)
 				_eputs_str(av[0]);
 				_eputs_str(": 0: Can't open ");
 				_eputs_str(av[1]);
-				_eput_char_stderr('\n');
+				_eputs_str(": No such file or directory\n");
 				_eput_char_stderr(BUF_FLUSH);
 				exit(127);
 			}
 			return (EXIT_FAILURE);
 		}
-		info->readfd = file;
+		info->readfd = fild;
 	}
 	populate_envnt_list(info);
 	_read_hist(info);
