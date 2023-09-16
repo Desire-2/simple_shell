@@ -24,7 +24,7 @@ int _my_hist(info_t *info)
 int  unset_alias_to_str(info_t *info, char *str)
 {
 	char *w;
-	int c;
+	char c;
 	int retrn;
 
 	w = _str_char(str, '=');
