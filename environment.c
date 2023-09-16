@@ -30,8 +30,8 @@ char **_get_environ(info_t *info)
 int _unsetenvirn(info_t *info, char *var)
 {
 	list_t *node = info->env;
-	size_t r = 0;
 	char *m;
+	size_t r = 0;
 
 	if (!node)
 		return (0);
@@ -68,8 +68,8 @@ int _unsetenvirn(info_t *info, char *var)
 int _setenvirn(info_t *info, char *var, char *value)
 {
 	char *buff = NULL;
-	list_t *node;
 	char *m;
+	list_t *node;
 
 	if (!var)
 		return (0);
