@@ -1,54 +1,47 @@
 #include "main.h"
 
 /**
- * _mem_set_cons - fills memory with a constant byte
- * @s: the pointer to the memory area
- * @b: the byte to fill *s with
- * @n: the amount of bytes to be filled
+ * _memset - Function fills memory with a constant byte
+ * @s: memory area pointer
+ * @b: Byte to fill *s with
+ * @n: Amount of bytes to be filled
  * Return: (s) a pointer to the memory area s
  */
-
-char *_mem_set_cons(char *s, char b, unsigned int n)
+char *_memset(char *s, char b, unsigned int n)
 {
 	unsigned int r;
 
 	for (r = 0; r < n; r++)
 		s[r] = b;
 	return (s);
-
 }
 
-
 /**
- * ffrees - frees a string of strings
+ * ffree - Function frees a string of strings
  * @pp: string of strings
  */
-
-void _str_frees(char **pp)
+void ffree(char **pp)
 {
-	char **z = pp;
+	char **b = pp;
 
 	if (!pp)
 		return;
 	while (*pp)
 		free(*pp++);
-	_str_frees(z);
-
+	free(b);
 }
 
-
 /**
- * _reallocate_bl - reallocates a block of memory
- * @ptr: pointer to previous malloc'ated block
- * @old_size: byte size of previous block
- * @new_size: byte size of new block
+ * _realloc - Function reallocates a block of memory
+ * @ptr: Pointer to previous malloc'ated block
+ * @old_size: Byte size of previous block
+ * @new_size: Byte size of new block
  *
  * Return: pointer to da ol'block nameen.
  */
-
-void *_reallocate_bl(void *ptr, unsigned int old_size, unsigned int new_size)
+void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 {
-	char *m;
+	char *w;
 
 	if (!ptr)
 		return (malloc(new_size));
@@ -57,14 +50,13 @@ void *_reallocate_bl(void *ptr, unsigned int old_size, unsigned int new_size)
 	if (new_size == old_size)
 		return (ptr);
 
-	m = malloc(new_size);
-	if (!m)
-	return (NULL);
+	w = malloc(new_size);
+	if (!w)
+		return (NULL);
 
 	old_size = old_size < new_size ? old_size : new_size;
 	while (old_size--)
-		m[old_size] = ((char *)ptr)[old_size];
+		w[old_size] = ((char *)ptr)[old_size];
 	free(ptr);
-	return (m);
-
+	return (w);
 }

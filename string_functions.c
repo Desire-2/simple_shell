@@ -1,92 +1,87 @@
 #include "main.h"
-/**
- * _str_cpy - Function that copies a string
- * @dest: String destination
- * @src: The source string
- *
- * Return: Pointer to destination
- */
 
-char *_str_cpy(char *dest, char *src)
+/**
+ * _strcpy - Function copies a string
+ * @dest: Destination
+ * @src: Source
+ *
+ * Return: pointer to destination
+ */
+char *_strcpy(char *dest, char *src)
 {
-	int n = 0;
+	int r = 0;
 
 	if (dest == src || src == 0)
 		return (dest);
-	while (src[n])
+	while (src[r])
 	{
-		dest[n] = src[n];
-		n++;
+		dest[r] = src[r];
+		r++;
 	}
-	dest[n] = 0;
+	dest[r] = 0;
 	return (dest);
 }
 
-
 /**
- * _str_duplicate - Functin that duplicates a string
- * @str: The string to be duplicated
+ * _strdup - Function that Duplicates  String
+ * @str: The String to Duplicate
  *
- * Return: Pointer to the duplicated string
+ * Return: Pointer to the Duplicated String
  */
-
-char *_str_duplicate(const char *str)
+char *_strdup(const char *str)
 {
-	char *rtn;
 	int len = 0;
+	char *retn;
 
 	if (str == NULL)
 		return (NULL);
 	while (*str++)
 		len++;
-	rtn = malloc(sizeof(char) * (len + 1));
-	if (!rtn)
+	retn = malloc(sizeof(char) * (len + 1));
+	if (!retn)
 		return (NULL);
 	for (len++; len--;)
-		rtn[len] = *--str;
-	return (rtn);
+		retn[len] = *--str;
+	return (retn);
 }
 
-
 /**
- * _puts_str - Function to print an input string
- * @str: The string to print
+ * _puts - Function that prints an input string
+ * @str: The string to  Print
  *
  * Return: Nothing
  */
-
-void _puts_str(char *str)
+void _puts(char *str)
 {
-	int n = 0;
+	int r = 0;
 
 	if (!str)
 		return;
-	while (str[n] != '\0')
+	while (str[r] != '\0')
 	{
-		_put_char_std(str[n]);
-		n++;
+		_putchar(str[r]);
+		r++;
 	}
 }
 
-
 /**
- * _put_char_std - Function writes the character c to stdout
- *@c: The character to be printed
- * Return: 1 On success.
+ * _putchar - Function that writes the character c to stdout
+ * @c: The character to be  printed
+ *
+ * Return: On success 1.
  * On error, -1 is returned, and errno is set appropriately.
  */
-
-int _put_char_std(char c)
+int _putchar(char c)
 {
+	static int r;
 	static char buffer[WRITE_BUF_SIZE];
-	static int n;
 
-	if (c == BUF_FLUSH || n >= WRITE_BUF_SIZE)
+	if (c == BUF_FLUSH || r >= WRITE_BUF_SIZE)
 	{
-		write(1, buffer, n);
-		n = 0;
+		write(1, buffer, r);
+		r = 0;
 	}
 	if (c != BUF_FLUSH)
-		buffer[n++] = c;
+		buffer[r++] = c;
 	return (1);
 }

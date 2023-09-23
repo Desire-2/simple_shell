@@ -1,35 +1,31 @@
 #include "main.h"
 
 /**
- * _str_length - Function that returns the length of a string
- * @s: The string whose length to be checked
+ * _strlen - Function returns the length of a string
+ * @s:  string with length to check
  *
- * Return: The integer length of string
+ * Return: integer length of string
  */
-
-int _str_length(char *s)
+int _strlen(char *s)
 {
-	int n = 0;
+	int r = 0;
 
 	if (!s)
 		return (0);
 
 	while (*s++)
-		n++;
-	return (n);
-
+		r++;
+	return (r);
 }
 
-
 /**
- * _str_cmp_two - Function performs lexicogarphic comparison of two strings.
- * @s1: The first string
- * @s2: The next string
+ * _strcmp - Function performs lexicogarphic comparison of two strangs.
+ * @s1: First strinng
+ * @s2: Second strang
  *
- * Return: If s1 < s2 negative , if s1 > s2 positive, if s1 == s2 zero
+ * Return: negative if s1 < s2, positive if s1 > s2, zero if s1 == s2
  */
-
-int _str_cmp_two(char *s1, char *s2)
+int _strcmp(char *s1, char *s2)
 {
 	while (*s1 && *s2)
 	{
@@ -42,19 +38,16 @@ int _str_cmp_two(char *s1, char *s2)
 		return (0);
 	else
 		return (*s1 < *s2 ? -1 : 1);
-
 }
 
-
 /**
- * starts_with_node - checks if needle starts with haystack
- * @haystack: string to search
- * @needle: the substring to find
+ * _starts_with - Function checks if needle starts with haystack
+ * @haystack: String to search
+ * @needle: Substring to find
  *
  * Return: address of next char of haystack or NULL
  */
-
-char *starts_with_node(const char *haystack, const char *needle)
+char *_starts_with(const char *haystack, const char *needle)
 {
 	while (*needle)
 		if (*needle++ != *haystack++)
@@ -62,24 +55,21 @@ char *starts_with_node(const char *haystack, const char *needle)
 	return ((char *)haystack);
 }
 
-
 /**
- * _str_cat - Function that concatenates two strings
- * @dest: Buffer destination
- * @src: Buffer source
+ * _strcat - Function concatenates two strings
+ * @dest: buffer destination
+ * @src: source buffer
  *
- * Return: pointer to buffer destination
+ * Return: pointer to destination buffer
  */
-
-char *_str_cat(char *dest, char *src)
+char *_strcat(char *dest, char *src)
 {
-	char *rtn = dest;
+	char *retn = dest;
 
 	while (*dest)
 		dest++;
 	while (*src)
 		*dest++ = *src++;
 	*dest = *src;
-	return (rtn);
-
+	return (retn);
 }

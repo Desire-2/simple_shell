@@ -1,19 +1,16 @@
 #include "main.h"
 
-
 /**
- *_str_m_cpy - Function to copie a string
- *@dest: The string destination  to be copied to
- *@src: The string source
- *@n: The characters amount to be copied
- *Return: The string concatenated
+ **_strncpy - Function that copies a string
+ *@dest: destination string to be copied to
+ *@src: Source string
+ *@n: the amount of characters to be copied
+ *Return: the concatenated string
  */
-
-char *_str_m_cpy(char *dest, char *src, int n)
+char *_strncpy(char *dest, char *src, int n)
 {
-	int r;
-	int w;
-	char *s = dest;
+	int r, w;
+	char *z = dest;
 
 	r = 0;
 	while (src[r] != '\0' && r < n - 1)
@@ -30,47 +27,43 @@ char *_str_m_cpy(char *dest, char *src, int n)
 			w++;
 		}
 	}
-	return (s);
-}
-
-
-/**
- * _str_m_cat - Function to concatenate two strings
- * @des: The initial string
- * @src: The the following string
- * @n: The bytes  amount to be maximally used
- * Return: The string concatenated
- */
-
-char *_str_m_cat(char *des, char *src, int n)
-{
-	int r = 0;
-	int j = 0;
-	char *z = des;
-
-
-	while (des[r] != '\0')
-		r++;
-	while (src[j] != '\0' && j < n)
-	{
-		des[j] = src[j];
-		r++;
-		j++;
-	}
-	if (j < n)
-		des[j] = '\0';
 	return (z);
 }
 
+/**
+ **_strncat - Function that concatenates two strings
+ *@dest: First string
+ *@src: the nex string
+ *@n: the amount of bytes to be maximally used
+ *Return: the concatenated string
+ */
+char *_strncat(char *dest, char *src, int n)
+{
+	int r, w;
+	char *s = dest;
+
+	r = 0;
+	w = 0;
+	while (dest[r] != '\0')
+		r++;
+	while (src[w] != '\0' && w < n)
+	{
+		dest[r] = src[w];
+		r++;
+		w++;
+	}
+	if (w < n)
+		dest[r] = '\0';
+	return (s);
+}
 
 /**
- **_str_char - Function to locates a character in a string
- *@s: The parsed string
- *@c: the character to check in
- *Return: (s) a pointer
+ **_strchr - Function that locates a character in a string
+ *@s: String to  parse
+ *@c:  Character to look for
+ *Return: (s) a pointer to the memory area s
  */
-
-char *_str_char(char *s, char c)
+char *_strchr(char *s, char c)
 {
 	do {
 		if (*s == c)

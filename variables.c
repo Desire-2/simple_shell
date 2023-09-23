@@ -1,17 +1,14 @@
 #include "main.h"
 
-
 /**
- * is_char_chain - Function to test if current char
- *		in buffer is a chain delimeter
- * @buf: the char buffer
- * @info: The parameter struct
- * @p: The address of current position in buf
+ * _is_chain - Function test if current char in buffer is a chain delimeter
+ * @info: Parameter Struct
+ * @buf: Char Buffer
+ * @p: address of current position in buf
  *
  * Return: 1 if chain delimeter, 0 otherwise
  */
-
-int is_char_chain(info_t *info, char *buf, size_t *p)
+int _is_chain(info_t *info, char *buf, size_t *p)
 {
 	size_t w = *p;
 
@@ -36,22 +33,19 @@ int is_char_chain(info_t *info, char *buf, size_t *p)
 		return (0);
 	*p = w;
 	return (1);
-
 }
 
-
 /**
- * check_chain_st - Function to check if we should
- *		continue chaining based on last status
- * @info: The parameter  of struct
- * @buf: The char buffer
- * @p: The address of current position in buf
- * @i: The starting position in buf
- * @len: The length of buf
+ * _check_chain - Function checks we should continue chaining based on last status
+ * @info: Parameter Struct
+ * @buf: The char Buffer
+ * @p: address of current position in buf
+ * @i: Starting Position in buf
+ * @len: Length of buf
+ *
  * Return: Void
  */
-
-void check_chain_st(info_t *info, char *buf, size_t *p, size_t i, size_t len)
+void _check_chain(info_t *info, char *buf, size_t *p, size_t i, size_t len)
 {
 	size_t w = *p;
 
@@ -59,7 +53,7 @@ void check_chain_st(info_t *info, char *buf, size_t *p, size_t i, size_t len)
 	{
 		if (info->status)
 		{
-			buf[i] = 0;
+			buf[w] = 0;
 			w = len;
 		}
 	}
@@ -71,18 +65,17 @@ void check_chain_st(info_t *info, char *buf, size_t *p, size_t i, size_t len)
 			w = len;
 		}
 	}
+
 	*p = w;
 }
 
-
 /**
- * rep_alias - Function to replaces an aliases in the tokenized string
- * @info: The parameter of struct
+ * _replace_alias - Function  replaces an aliases in the tokenized string
+ * @info: Parameter struct
  *
- * Return: if replaced 1, otherwise 0
+ * Return: 1 if replaced, 0 otherwise
  */
-
-int rep_alias(info_t *info)
+int _replace_alias(info_t *info)
 {
 	int r;
 	list_t *node;
@@ -90,14 +83,14 @@ int rep_alias(info_t *info)
 
 	for (r = 0; r < 10; r++)
 	{
-		node = _nd_starts_with_(info->alias, info->argv[0], '=');
+		node = _node_starts_with(info->alias, info->argv[0], '=');
 		if (!node)
 			return (0);
 		free(info->argv[0]);
-		w = _str_char(node->str, '=');
+		w = _strchr(node->str, '=');
 		if (!w)
 			return (0);
-		w = _str_duplicate(w + 1);
+		w = _strdup(w + 1);
 		if (!w)
 			return (0);
 		info->argv[0] = w;
@@ -105,68 +98,57 @@ int rep_alias(info_t *info)
 	return (1);
 }
 
-
 /**
- * rep_vars - Function to replace vars in the tokenized string
- * @info: The parameter of struct
+ * _replace_vars - Function replaces vars in the tokenized string
+ * @info: Parameter struct
  *
- * Return: if replaced 1, otherwise 0
+ * Return: 1 if replaced, 0 otherwise
  */
-
-int rep_vars(info_t *info)
+int _replace_vars(info_t *info)
 {
 	int r = 0;
-	list_t *node;
+	list_t *nd;
 
 	for (r = 0; info->argv[r]; r++)
 	{
-		if (info->argv[r][0] != '$')
-			continue;
-		if (!info->argv[r][1])
+		if (info->argv[r][0] != '$' || !info->argv[r][1])
 			continue;
 
-		if (!_str_cmp_two(info->argv[r], "$?"))
+		if (!_strcmp(info->argv[r], "$?"))
 		{
-			rep_str(&(info->argv[r]),
-				_str_duplicate(_convert_nb(info->status, 10, 0)));
+			_replace_string(&(info->argv[r]),
+					_strdup(_convert_number(info->status, 10, 0)));
 			continue;
 		}
-		if (!_str_cmp_two(info->argv[r], "$$"))
+		if (!_strcmp(info->argv[r], "$$"))
 		{
-			rep_str(&(info->argv[r]),
-						_str_duplicate(_convert_nb(getpid(), 10, 0)));
+			_replace_string(&(info->argv[r]),
+					_strdup(_convert_number(getpid(), 10, 0)));
 			continue;
 		}
-		node = _nd_starts_with_(info->env, &info->argv[r][1], '=');
-		if (node)
+		nd = _node_starts_with(info->env, &info->argv[r][1], '=');
+		if (nd)
 		{
-			rep_str(&(info->argv[r]),
-						_str_duplicate(_str_char(node->str, '=') + 1));
+			_replace_string(&(info->argv[r]),
+					_strdup(_strchr(nd->str, '=') + 1));
 			continue;
 		}
-		rep_str(&info->argv[r], _str_duplicate(""));
+		_replace_string(&info->argv[r], _strdup(""));
 
 	}
 	return (0);
-
 }
 
-
 /**
- * rep_str - Function to replace string
- * @old: The address of old string
- * @new: The new string
+ * _replace_string - Function replaces string
+ * @old: address of old string
+ * @new: new string
  *
- * Return: if replaced 1, otherwis 0
+ * Return: 1 if replaced, 0 otherwise
  */
-
-int rep_str(char **old, char *new)
+int _replace_string(char **old, char *new)
 {
 	free(*old);
 	*old = new;
 	return (1);
 }
-
-
-
-

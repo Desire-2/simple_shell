@@ -1,28 +1,23 @@
 #include "main.h"
 
 /**
- * interactive_mode - interactive mode of the shell
- *		 It determines whether the shell is running in interactive mode or not.
- * @info: a pointer to be taken to a structure of type info_t as an argument.
+ * interactive - checks  if shell is interactive mode
+ * @info: address of struct
  *
- * Return: 1 interactive mode, 0 otherwise
+ * Return: if interactive mode 1 , 0 otherwise
  */
-
-int interactive_mode(info_t *info)
+int _interactive(info_t *info)
 {
 	return (isatty(STDIN_FILENO) && info->readfd <= 2);
-
 }
 
-
 /**
- * is_delimimeter - checks if character c is a delimeter
+ * _is_delim - Function that checks if character is a delimeter
  * @c: the char to be checked
- * @delim: string of delimeter
- * Return: if true 1 , if false 0
+ * @delim: delimeter string
+ * Return: if true 1, if false 0;
  */
-
-int is_delimimeter(char c, char *delim)
+int _is_delim(char c, char *delim)
 {
 	while (*delim)
 		if (*delim++ == c)
@@ -30,37 +25,30 @@ int is_delimimeter(char c, char *delim)
 	return (0);
 }
 
-
 /**
- * _isalphabet - checks for character c is alphabetic
- * @c: The character to be  inputed
- * Return: if c is alphabetic 1 , otherwise 0
+ * __isalpha - Function checks for alphabetic character
+ * @c: The character to be inputed
+ * Return: if c is alphabetic 1 , 0 otherwise
  */
 
-
-int _isalphabet(int c)
+int __isalpha(int c)
 {
-	if (c >= 'a' && c <= 'z')
-		return (1);
-	if (c >= 'A' && c <= 'Z')
+	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
 		return (1);
 	else
 		return (0);
 }
 
-
 /**
- * _atoi_int - function to convert a string to an integer
- * @s: the string will be converted
- * Return: if no numbers in string 0, otherwise converted number
+ * __atoi - function that converts a string to an integer
+ * @s: the string to convert
+ * Return: if no numbers in string 0 , converted number otherwise
  */
 
-
-int _atoi_int(char *s)
+int __atoi(char *s)
 {
-	int r,  flag = 0;
+	int r, flag = 0, outpt;
 	int sign = 1;
-	int output;
 	unsigned int rslt = 0;
 
 	for (r = 0; s[r] != '\0' && flag != 2; r++)
@@ -79,8 +67,9 @@ int _atoi_int(char *s)
 	}
 
 	if (sign == -1)
-		output = -rslt;
+		outpt = -rslt;
 	else
-		output = rslt;
-	return (output);
+		outpt = rslt;
+
+	return (outpt);
 }
