@@ -20,7 +20,7 @@ char *_mem_set_cons(char *s, char b, unsigned int n)
 
 
 /**
- * _str_frees - frees a string of strings
+ * ffrees - frees a string of strings
  * @pp: string of strings
  */
 
